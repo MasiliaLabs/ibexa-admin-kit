@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 import { Accordion } from './ids';
 
 interface SectionProps {
-    title: string;
+    title: ReactNode;
     open: boolean;
     children: ReactNode;
 }

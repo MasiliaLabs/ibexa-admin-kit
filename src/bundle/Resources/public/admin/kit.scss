@@ -320,3 +320,32 @@ $header-height: calculateRem(73px);
     clip: rect(0 0 0 0);
     white-space: nowrap;
 }
+
+// The tiles of figures at the head of a page.
+.masilia-kit-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calculateRem(16px);
+    margin: calculateRem(12px) 0 calculateRem(24px);
+}
+
+.masilia-kit-stat {
+    display: flex;
+    flex-direction: column;
+    min-width: calculateRem(160px);
+    padding: calculateRem(12px) calculateRem(20px);
+    border: calculateRem(1px) solid ibexa.$ibexa-color-light;
+    border-radius: calculateRem(8px);
+    background: ibexa.$ibexa-color-white;
+
+    &__value {
+        font-size: calculateRem(28px);
+        line-height: 1.2;
+        color: ibexa.$ibexa-color-dark;
+    }
+
+    &__label {
+        font-size: calculateRem(13px);
+        color: ibexa.$ibexa-color-dark-400;
+    }
+}
