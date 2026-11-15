@@ -14,6 +14,8 @@
 @use '@ids-assets/scss/expander';
 @use '@ids-assets/scss/input';
 @use '@ids-assets/scss/inputs/input-text';
+@use '@ids-assets/scss/inputs/checkbox';
+@use '@ids-assets/scss/overflow-list';
 @use '@ids-assets/scss/inputs/dropdown';
 
 $radius: ibexa.$ibexa-border-radius;
@@ -366,4 +368,16 @@ $header-height: calculateRem(73px);
     display: flex;
     flex-wrap: wrap;
     gap: calculateRem(4px) calculateRem(24px);
+}
+
+// Fields side by side on one row, sharing the width.
+.masilia-kit-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 calculateRem(16px);
+
+    > * {
+        flex: 1 1 calculateRem(240px);
+        min-width: 0;
+    }
 }

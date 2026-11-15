@@ -42,6 +42,19 @@ export interface DropdownSingleProps {
     renderEmptySelectionInfo?: () => ReactNode;
 }
 
+export interface DropdownMultiProps {
+    name?: string;
+    items: Array<{ id: string; label: string }>;
+    /** The ids selected */
+    value: string[];
+    onChange: (ids: string[]) => void;
+    disabled?: boolean;
+    error?: boolean;
+    className?: string;
+    maxVisibleItems?: number;
+    renderEmptySelectionInfo?: () => ReactNode;
+}
+
 export type TagType = 'primary' | 'primary-alt' | 'success' | 'info' | 'warning' | 'error' | 'neutral';
 
 export interface TagProps {
@@ -84,6 +97,7 @@ interface IdsComponents {
     AssetsProvider: ComponentType<{ value: AssetsValue; children?: ReactNode }>;
     TranslatorProvider: ComponentType<{ value: TranslatorValue; children?: ReactNode }>;
     DropdownSingleInput: ComponentType<DropdownSingleProps>;
+    DropdownMultiInput: ComponentType<DropdownMultiProps>;
     Tag: ComponentType<TagProps>;
     Badge: ComponentType<BadgeProps>;
     Accordion: ComponentType<AccordionProps>;
@@ -95,6 +109,7 @@ export const Button = components.Button;
 export const AssetsProvider = components.AssetsProvider;
 export const TranslatorProvider = components.TranslatorProvider;
 export const DropdownSingleInput = components.DropdownSingleInput;
+export const DropdownMultiInput = components.DropdownMultiInput;
 export const Tag = components.Tag;
 export const Chip = (chipModule as unknown as { Chip: ComponentType<ChipProps> }).Chip;
 export const Badge = components.Badge;

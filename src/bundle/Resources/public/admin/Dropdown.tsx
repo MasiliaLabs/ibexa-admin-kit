@@ -3,7 +3,7 @@ import React, { useId } from 'react';
 import { fromId, toId, toItems } from './adapters';
 import type { Option } from './adapters';
 import { FieldFrame } from './Field';
-import { DropdownSingleInput } from './ids';
+import { DropdownMultiInput, DropdownSingleInput } from './ids';
 
 interface DropdownFieldProps {
     label: string;
@@ -36,6 +36,38 @@ export function DropdownField({ label, value, options, onChange, emptyLabel, pla
                     error={error !== undefined}
                     renderEmptySelectionInfo={placeholder === undefined ? undefined : () => <div className="ids-dropdown__placeholder">{placeholder}</div>}
                 />
+        </FieldFrame>
+    );
+}
+
+interface MultiDropdownFieldProps {
+    label: string;
+    values: string[];
+    options: Option[];
+    onChange: (values: string[]) => void;
+    /** What an empty selection says */
+    placeholder?: string;
+    required?: boolean;
+    hint?: string;
+    error?: string;
+    disabled?: boolean;
+}
+
+/** A choice of several values among a list, in the design system's multiple dropdown (a checkbox per entry, the choices shown as chips). */
+export function MultiDropdownField({ label, values, options, onChange, placeholder, required, hint, error, disabled }: MultiDropdownFieldProps): React.ReactElement {
+    const id = useId();
+
+    return (
+        <FieldFrame id={id} group label={label} required={required} hint={hint} error={error}>
+            <DropdownMultiInput
+                name={id}
+                items={options.map((option) => ({ id: option.value, label: option.label }))}
+                value={values}
+                onChange={onChange}
+                disabled={disabled}
+                error={error !== undefined}
+                renderEmptySelectionInfo={placeholder === undefined ? undefined : () => <div className="ids-dropdown__placeholder">{placeholder}</div>}
+            />
         </FieldFrame>
     );
 }
