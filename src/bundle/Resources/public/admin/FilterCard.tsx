@@ -4,13 +4,26 @@ import type { ReactNode } from 'react';
 import type { Option } from './adapters';
 import { DropdownField } from './Dropdown';
 
-/** A bordered card that holds the filters of a list: its zones are told apart by a thin rule, as on the admin's list screens. */
-export function FilterCard({ children }: { children: ReactNode }): React.ReactElement {
-    return <div className="masilia-kit-filters" role="search">{children}</div>;
+interface FilterCardProps {
+    /** The search field: it has the zone on the left, closed by a rule */
+    search?: ReactNode;
+    /** The filters (`FilterSelect`…), side by side */
+    children?: ReactNode;
 }
 
-export function FilterZone({ children }: { children: ReactNode }): React.ReactElement {
-    return <div className="masilia-kit-filters__zone">{children}</div>;
+/**
+ * The filter bar of the admin's lists (the markup and the classes of Ibexa's `adaptive_filters` component, which carry all of its
+ * design): a card, the search on the left, the filters beside it, every control on the bottom edge of the row.
+ */
+export function FilterCard({ search, children }: FilterCardProps): React.ReactElement {
+    return (
+        <div className="ibexa-adaptive-filters" role="search">
+            <div className="ibexa-adaptive-filters__visible">
+                {search !== undefined ? <div className="ibexa-adaptive-filters__static-left"><div className="form-group">{search}</div></div> : null}
+                <div className="ibexa-adaptive-filters__items ibexa-adaptive-filters__items--after-initialization">{children}</div>
+            </div>
+        </div>
+    );
 }
 
 interface FilterSelectProps {
@@ -25,7 +38,7 @@ interface FilterSelectProps {
 /** A filter that is a choice: its label above, the design system's dropdown below. */
 export function FilterSelect({ label, value, options, emptyLabel, onChange }: FilterSelectProps): React.ReactElement {
     return (
-        <div className="masilia-kit-filters__select">
+        <div className="ibexa-adaptive-filters__item masilia-kit-filter-select">
             <DropdownField label={label} value={value} options={options} emptyLabel={emptyLabel} onChange={onChange} />
         </div>
     );

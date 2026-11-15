@@ -230,54 +230,23 @@ $header-height: calculateRem(73px);
 }
 
 // ----- Lists: the filter card, the search field, the address with its icon
-.masilia-kit-filters {
-    // The admin's own filter bar (ibexa-adaptive-filters): the card with its soft shadow, the search in a zone of its own closed by a
-    // rule, then the filters, every control aligned on the bottom edge of the row.
-    display: flex;
-    align-items: flex-end;
-    flex-wrap: wrap;
-    margin: calculateRem(12px) 0 calculateRem(24px);
-    padding: calculateRem(24px) calculateRem(24px) 0;
-    border: calculateRem(1px) solid ibexa.$ibexa-color-light;
-    border-radius: $radius;
-    box-shadow: calculateRem(4px) calculateRem(22px) calculateRem(47px) 0 rgba(ibexa.$ibexa-color-info, 0.05);
-
-    &__zone {
-        display: flex;
-        align-items: flex-end;
-        margin-bottom: calculateRem(24px);
-        padding-right: calculateRem(16px);
-
-        // The search: a fixed width, and the rule that tells it from the filters
-        &:first-child {
-            width: calculateRem(300px);
-            margin-right: calculateRem(16px);
-            border-right: calculateRem(1px) solid ibexa.$ibexa-color-light;
-
-            > * {
-                width: 100%;
-            }
-        }
+// The dropdown of a filter in the admin's filter bar (ibexa-adaptive-filters): no room kept for a hint or an error, as tall as the
+// search field beside it (48px).
+.masilia-kit-filter-select {
+    .masilia-kit-field {
+        margin-bottom: 0;
     }
 
-    &__select {
-        .ibexa-label {
-            margin-top: 0;
-        }
+    .ibexa-form-error {
+        display: none;
+    }
 
-        // No room kept for a hint or an error under a filter
-        .masilia-kit-field {
-            margin-bottom: 0;
-        }
+    .ids-dropdown {
+        min-width: calculateRem(216px);
 
-        .ids-dropdown {
-            min-width: calculateRem(216px);
-
-            // As tall as the search field beside it (48px)
-            &__widget {
-                padding-top: calculateRem(11px);
-                padding-bottom: calculateRem(11px);
-            }
+        &__widget {
+            padding-top: calculateRem(11px);
+            padding-bottom: calculateRem(11px);
         }
     }
 }
