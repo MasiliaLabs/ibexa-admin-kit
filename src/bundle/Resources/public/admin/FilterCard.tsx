@@ -15,11 +15,11 @@ interface FilterCardProps {
 
 /**
  * The filter bar of the admin's lists (the markup and the classes of Ibexa's `adaptive_filters` component, which carry all of its
- * design): a card, the search on the left, the filters beside it, every control on the bottom edge of the row.
+ * design, in its "inside tabs" form: flush with the panel of the tab it sits in): a card, the search on the left, the filters beside it, every control on the bottom edge of the row.
  */
 export function FilterCard({ search, children, actions }: FilterCardProps): React.ReactElement {
     return (
-        <div className="ibexa-adaptive-filters" role="search">
+        <div className="ibexa-adaptive-filters ibexa-adaptive-filters--inside-tabs" role="search">
             <div className="ibexa-adaptive-filters__visible">
                 {search !== undefined ? <div className="ibexa-adaptive-filters__static-left"><div className="form-group">{search}</div></div> : null}
                 <div className="ibexa-adaptive-filters__items ibexa-adaptive-filters__items--after-initialization">{children}{actions !== undefined ? <div className="ibexa-adaptive-filters__actions">{actions}</div> : null}</div>
