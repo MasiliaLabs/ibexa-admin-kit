@@ -1,0 +1,21 @@
+{
+    "name": "masilia/ibexa-admin-kit",
+    "description": "React components in the design of the Ibexa admin (fields, dropdown, tabs, table, dialogs, content browser picker…) for the admin pages of the Masilia packages",
+    "type": "ibexa-bundle",
+    "license": "proprietary",
+    "require": {
+        "php": ">=8.3",
+        "ibexa/admin-ui": "^5.0",
+        "symfony/http-kernel": "^7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Masilia\\Bundle\\IbexaAdminKit\\": "src/bundle/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "0.1.x-dev"
+        }
+    }
+}

@@ -1,0 +1,15 @@
+name: CI
+on: [push, pull_request]
+jobs:
+    js:
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                working-directory: src/bundle/Resources/public/admin
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: '24'
+            # The tests need no package: Node reads the TypeScript sources as they are.
+            - run: node --experimental-strip-types --import ./test-hooks/register.mjs --test *.test.ts
