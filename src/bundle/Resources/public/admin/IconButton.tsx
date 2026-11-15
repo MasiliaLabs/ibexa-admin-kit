@@ -8,12 +8,14 @@ interface IconButtonProps {
     label: string;
     onClick?: () => void;
     disabled?: boolean;
+    /** The action is running: the icon turns and the button is out of reach until it ends */
+    busy?: boolean;
 }
 
 /** A ghost button with an icon and no text, as the tables of the admin have for their actions. */
-export function IconButton({ icon, label, onClick, disabled }: IconButtonProps): React.ReactElement {
+export function IconButton({ icon, label, onClick, disabled, busy }: IconButtonProps): React.ReactElement {
     const className = 'btn ibexa-btn ibexa-btn--ghost ibexa-btn--no-text';
-    const content = <IconSvg name={icon} />;
+    const content = <span className={busy === true ? 'masilia-kit-spin' : undefined} style={{ display: 'inline-flex' }}><IconSvg name={icon} /></span>;
 
-    return <button type="button" className={className} title={label} aria-label={label} disabled={disabled} onClick={onClick}>{content}</button>;
+    return <button type="button" className={className} title={label} aria-label={label} disabled={disabled === true || busy === true} aria-busy={busy === true ? true : undefined} onClick={onClick}>{content}</button>;
 }
