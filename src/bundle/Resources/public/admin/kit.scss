@@ -345,3 +345,25 @@ $header-height: calculateRem(73px);
 .ibexa-table-header .masilia-kit-notice {
     margin-bottom: 0;
 }
+
+// Checkboxes: no room under the label unless there is a hint; a group lays them out in a row.
+.masilia-kit-check {
+    margin-bottom: calculateRem(4px);
+
+    .form-check {
+        display: flex;
+        align-items: center;
+        gap: calculateRem(8px);
+        padding-left: 0;
+    }
+
+    .form-check-label {
+        white-space: nowrap;
+    }
+}
+
+.masilia-kit-check-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calculateRem(4px) calculateRem(24px);
+}

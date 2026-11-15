@@ -32,8 +32,8 @@ interface FilterSelectProps {
     label: string;
     value: string;
     options: Option[];
-    /** The entry that stands for "no filter" ("All") */
-    emptyLabel: string;
+    /** The entry that stands for "no filter" ("All"); without it the filter always has a value */
+    emptyLabel?: string;
     onChange: (value: string) => void;
     disabled?: boolean;
 }

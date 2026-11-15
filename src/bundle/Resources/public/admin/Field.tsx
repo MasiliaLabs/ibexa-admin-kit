@@ -53,7 +53,7 @@ interface TextFieldProps {
     label: string;
     value: string;
     onChange: (value: string) => void;
-    type?: 'text' | 'number';
+    type?: 'text' | 'number' | 'password' | 'url';
     required?: boolean;
     hint?: string;
     error?: string;
@@ -62,10 +62,15 @@ interface TextFieldProps {
     readOnly?: boolean;
     autoFocus?: boolean;
     inputMode?: 'text' | 'numeric' | 'url';
+    autoComplete?: string;
+    /** For a number: the step and the bounds */
+    step?: string;
+    min?: string;
+    max?: string;
     onBlur?: () => void;
 }
 
-export function TextField({ label, value, onChange, type = 'text', required, hint, error, placeholder, disabled, readOnly, autoFocus, inputMode, onBlur }: TextFieldProps): React.ReactElement {
+export function TextField({ label, value, onChange, type = 'text', required, hint, error, placeholder, disabled, readOnly, autoFocus, inputMode, autoComplete, step, min, max, onBlur }: TextFieldProps): React.ReactElement {
     const id = useId();
 
     return (
@@ -80,6 +85,10 @@ export function TextField({ label, value, onChange, type = 'text', required, hin
                     disabled={disabled}
                     readOnly={readOnly}
                     inputMode={inputMode}
+                    autoComplete={autoComplete}
+                    step={step}
+                    min={min}
+                    max={max}
                     data-autofocus={autoFocus === true ? '' : undefined}
                     aria-invalid={error !== undefined}
                     aria-required={required}
