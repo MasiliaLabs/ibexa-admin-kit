@@ -381,3 +381,9 @@ $header-height: calculateRem(73px);
         min-width: 0;
     }
 }
+
+// A table header without its rule (it opens fields, not a table).
+.ibexa-table-header.masilia-kit-table-header--plain {
+    border-bottom: 0;
+    padding-bottom: calculateRem(8px);
+}
