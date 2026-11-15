@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { test } from 'node:test';
 
 import { fakeFetch } from './testing';
-import { messageFor, messageFromBody, problemsFor, problemsFromBody, request } from './http';
+import { messageFor, messageFromBody, problemsFor, problemsFromBody, request, warningFor } from './http';
 
 test('a success gives the data and sends JSON with the token header', async () => {
     const { fetcher, calls } = fakeFetch([{ status: 201, body: { site: { identifier: 'demo_group' } } }]);
@@ -58,4 +58,13 @@ test('the problems of a field are those of the field and of what is under it', (
     assert.deepEqual(problemsFor(problems, 'siteaccesses[1]').map((p) => p.message), ['H', 'S']);
     assert.equal(messageFor(problems, 'siteaccesses[1].host'), 'H');
     assert.equal(messageFor(problems, 'siteaccesses[1].name'), undefined);
+});
+
+test('a warning is kept apart from a refusal: it is not what a field shows as an error', () => {
+    const problems = problemsFromBody({ problems: [{ path: 'cookie', message: 'W', warning: true }, { path: 'cookie', message: 'E' }, { path: 'x', message: 'X' }] });
+
+    assert.equal(messageFor(problems, 'cookie'), 'E');
+    assert.equal(warningFor(problems, 'cookie'), 'W');
+    assert.equal(warningFor(problems, 'x'), undefined);
+    assert.equal(messageFor([{ path: 'cookie', message: 'W', warning: true }], 'cookie'), undefined);
 });

@@ -4,6 +4,8 @@ import { adminHeaders } from './admin';
 export interface FieldProblem {
     path: string;
     message: string;
+    /** Something to know, not a refusal: it does not stop the value from being saved */
+    warning?: boolean;
 }
 
 /** Outcome of a call: HTTP errors are values, not exceptions, so a screen always has a message to show. */
@@ -42,7 +44,7 @@ export function problemsFromBody(body: unknown): FieldProblem[] {
     }
 
     return body.problems.flatMap((item): FieldProblem[] => (
-        isRecord(item) && typeof item.message === 'string' ? [{ path: typeof item.path === 'string' ? item.path : '', message: item.message }] : []
+        isRecord(item) && typeof item.message === 'string' ? [{ path: typeof item.path === 'string' ? item.path : '', message: item.message, ...(item.warning === true ? { warning: true } : {}) }] : []
     ));
 }
 
@@ -84,7 +86,12 @@ export function problemsFor(problems: readonly FieldProblem[], path: string): Fi
     return problems.filter((p) => p.path === path || p.path.startsWith(`${path}.`) || p.path.startsWith(`${path}[`));
 }
 
-/** The first message for exactly this field, or undefined: what a field shows under itself. */
+/** The first refusal for exactly this field, or undefined: what a field shows under itself. */
 export function messageFor(problems: readonly FieldProblem[], path: string): string | undefined {
-    return problems.find((p) => p.path === path)?.message;
+    return problems.find((p) => p.path === path && p.warning !== true)?.message;
+}
+
+/** The first warning for exactly this field, or undefined. */
+export function warningFor(problems: readonly FieldProblem[], path: string): string | undefined {
+    return problems.find((p) => p.path === path && p.warning === true)?.message;
 }
