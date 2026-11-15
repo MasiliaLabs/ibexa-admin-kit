@@ -1,6 +1,8 @@
 import React from 'react';
 import type { ReactNode } from 'react';
 
+import { Notice } from './Notice';
+
 export interface Column<T> {
     key: string;
     header: ReactNode;
@@ -14,13 +16,18 @@ interface TableHeaderProps {
     /** The count shown in the headline in brackets: "Links (124)" */
     count?: number;
     actions?: ReactNode;
+    /** An informative line under the title, in the headline (as the admin's table header does) */
+    notice?: ReactNode;
 }
 
 /** The title of a table with its count, and the actions that go with it on the right, over a thin rule. */
-export function TableHeader({ headline, count, actions }: TableHeaderProps): React.ReactElement {
+export function TableHeader({ headline, count, actions, notice }: TableHeaderProps): React.ReactElement {
     return (
         <div className="ibexa-table-header">
-            <div className="ibexa-table-header__headline">{count === undefined ? headline : `${headline} (${count})`}</div>
+            <div className="ibexa-table-header__headline">
+                {count === undefined ? headline : `${headline} (${count})`}
+                {notice !== undefined ? <Notice>{notice}</Notice> : null}
+            </div>
             <div className="ibexa-table-header__actions">{actions}</div>
         </div>
     );

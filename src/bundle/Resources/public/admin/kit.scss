@@ -336,3 +336,12 @@ $header-height: calculateRem(73px);
         color: ibexa.$ibexa-color-dark-400;
     }
 }
+
+// A notice that stands on its own (in a table header it keeps the admin's spacing).
+.masilia-kit-notice {
+    margin-bottom: calculateRem(16px);
+}
+
+.ibexa-table-header .masilia-kit-notice {
+    margin-bottom: 0;
+}
