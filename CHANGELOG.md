@@ -1,0 +1,28 @@
+# Changelog
+
+All notable changes to `masilia/ibexa-admin-kit` are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/) (before 1.0, a minor version may contain breaking changes).
+
+## [Unreleased]
+
+### Added
+- `Notice`, the informative text of the admin's table header, as a component.
+- `IconButton` busy state: the icon turns and the button is disabled while an action runs.
+- `warningFor` in `http`: a problem can be a warning, which does not stop a value from being saved.
+
+### Changed
+- `notify()` goes through Ibexa's `ibexa.helpers.notification` and falls back to the `ibexa-notify` event.
+- Examples and test fixtures are neutral (no project names).
+
+## [0.1.0] - 2026-11-15
+
+First release: the React components of the Masilia admin pages in the design of the Ibexa admin.
+
+### Added
+- Fields: `TextField`, `DropdownField`, `MultiDropdownField` (with search), `Checkbox`, `CheckboxGroup`, `OrderedChoice`.
+- Layout: `Tabs`, `Section`, `TableHeader` (including a plain variant without a rule), `DataTable`, `FilterCard` with `FilterSelect` and `SearchInput`.
+- Feedback and actions: `StatusTag`, `StatTile`, `Spinner`, `Dialog`, `ConfirmDialog`, `ExternalLink`, `IconButton`, `UdwPicker`.
+- Helpers: `http`, `i18n`, `notify`, `udw`, `adapters`, `useDebounced`.
+- The bundle that registers the `@masilia-admin-kit` alias in Ibexa's Encore configuration.
+
+[Unreleased]: https://github.com/MasiliaLabs/ibexa-admin-kit/compare/0.1.0...HEAD
+[0.1.0]: https://github.com/MasiliaLabs/ibexa-admin-kit/releases/tag/0.1.0

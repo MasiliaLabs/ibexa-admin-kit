@@ -1,7 +1,23 @@
 name: CI
-on: [push, pull_request]
+
+on:
+    push:
+        branches: [main]
+    pull_request:
+
 jobs:
-    js:
+    composer:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: shivammathur/setup-php@v2
+              with:
+                  php-version: '8.4'
+                  coverage: none
+            - run: composer validate --strict
+
+    admin:
+        name: Admin scripts
         runs-on: ubuntu-latest
         defaults:
             run:
