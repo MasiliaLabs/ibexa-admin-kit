@@ -4,6 +4,8 @@ All notable changes to `masilia/ibexa-admin-kit` are documented here. The format
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-11-17
+
 ### Added
 - `Notice`, the informative text of the admin's table header, as a component.
 - `IconButton` busy state: the icon turns and the button is disabled while an action runs.
@@ -24,5 +26,6 @@ First release: the React components of the Masilia admin pages in the design of 
 - Helpers: `http`, `i18n`, `notify`, `udw`, `adapters`, `useDebounced`.
 - The bundle that registers the `@masilia-admin-kit` alias in Ibexa's Encore configuration.
 
-[Unreleased]: https://github.com/MasiliaLabs/ibexa-admin-kit/compare/0.1.0...HEAD
+[Unreleased]: https://github.com/MasiliaLabs/ibexa-admin-kit/compare/0.1.1...HEAD
+[0.1.1]: https://github.com/MasiliaLabs/ibexa-admin-kit/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/MasiliaLabs/ibexa-admin-kit/releases/tag/0.1.0
