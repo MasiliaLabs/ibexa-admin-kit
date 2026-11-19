@@ -4,6 +4,11 @@ All notable changes to `masilia/ibexa-admin-kit` are documented here. The format
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-11-19
+
+### Added
+- An agent skill, `skills/masilia-ibexa-admin-kit`, for AI coding agents that work with the package; the README says how to install it.
+
 ## [0.1.1] - 2026-11-17
 
 ### Added
@@ -26,6 +31,7 @@ First release: the React components of the Masilia admin pages in the design of 
 - Helpers: `http`, `i18n`, `notify`, `udw`, `adapters`, `useDebounced`.
 - The bundle that registers the `@masilia-admin-kit` alias in Ibexa's Encore configuration.
 
-[Unreleased]: https://github.com/MasiliaLabs/ibexa-admin-kit/compare/0.1.1...HEAD
+[Unreleased]: https://github.com/MasiliaLabs/ibexa-admin-kit/compare/0.1.2...HEAD
+[0.1.2]: https://github.com/MasiliaLabs/ibexa-admin-kit/compare/0.1.1...0.1.2
 [0.1.1]: https://github.com/MasiliaLabs/ibexa-admin-kit/compare/0.1.0...0.1.1
 [0.1.0]: https://github.com/MasiliaLabs/ibexa-admin-kit/releases/tag/0.1.0
