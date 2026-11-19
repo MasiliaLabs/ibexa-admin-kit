@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/MasiliaLabs/ibexa-admin-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/MasiliaLabs/ibexa-admin-kit/actions/workflows/ci.yml)
 [![Latest version](https://img.shields.io/packagist/v/masilia/ibexa-admin-kit.svg)](https://packagist.org/packages/masilia/ibexa-admin-kit)
+[![Downloads](https://img.shields.io/packagist/dt/masilia/ibexa-admin-kit.svg)](https://packagist.org/packages/masilia/ibexa-admin-kit/stats)
 [![PHP](https://img.shields.io/packagist/php-v/masilia/ibexa-admin-kit.svg)](https://packagist.org/packages/masilia/ibexa-admin-kit)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
