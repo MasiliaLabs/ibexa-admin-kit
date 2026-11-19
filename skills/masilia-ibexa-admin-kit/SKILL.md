@@ -9,7 +9,7 @@ React components with the classes, behaviour and design system of the Ibexa admi
 
 ## Set it up in a project
 1. `composer require masilia/ibexa-admin-kit`, then enable `Masilia\Bundle\IbexaAdminKit\MasiliaIbexaAdminKitBundle` in `config/bundles.php` (it has no PHP to wire: it only ships `Resources/encore/ibexa.config.setup.js`, which adds the alias `@masilia-admin-kit`).
-2. `php bin/console cache:clear` (regenerates `var/encore`), `yarn ibexa-generate-tsconfig` (TypeScript paths), `yarn encore dev --config-name ibexa`. Inside DDEV prefix with `ddev exec`.
+2. `php bin/console cache:clear` (regenerates `var/encore`), `yarn ibexa-generate-tsconfig` (TypeScript paths), `php bin/console ibexa:encore:compile` (not `yarn encore dev --config-name ibexa`: that config does not exist on a blank project). Inside DDEV prefix with `ddev exec`.
 
 ## Use it in an admin page
 - Declare the page entries in the bundle's `Resources/encore/ibexa.config.js` (the `ibexa` build), import through the alias: `import { DropdownField } from '@masilia-admin-kit/Dropdown'`. Styles: `@use '@masilia-admin-kit/kit';`.
