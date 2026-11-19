@@ -57,6 +57,24 @@ composer require masilia/ibexa-admin-kit
 
    Inside DDEV, prefix each command with `ddev exec`. The admin build is `ibexa:encore:compile`: `yarn encore dev --config-name ibexa` does not work ("Configuration with the name ibexa was not found"), and a plain `yarn encore dev` does not build the admin on a project that has not merged the Ibexa configuration into its `webpack.config.js`.
 
+### With Symfony Flex
+
+The Masilia recipes do the first steps for you. Add their endpoint once to the `composer.json` of your project, after the one of Ibexa:
+
+```json
+"extra": {
+    "symfony": {
+        "endpoint": [
+            "https://api.github.com/repos/ibexa/recipes/contents/index.json?ref=flex/main",
+            "https://api.github.com/repos/MasiliaLabs/recipes/contents/index.json?ref=flex/main",
+            "flex://defaults"
+        ]
+    }
+}
+```
+
+Then `composer require masilia/ibexa-admin-kit` enables the bundle. What is left is yours: the Encore configuration, the TypeScript paths and the admin build (`php bin/console cache:clear`, `yarn ibexa-generate-tsconfig`, `php bin/console ibexa:encore:compile`). The manual steps above and below stay valid.
+
 ## Usage
 
 Declare the entries of your admin page in the `ibexa` Encore configuration of your bundle (`Resources/encore/ibexa.config.js`), as any Ibexa bundle does, then import the components through the alias:
