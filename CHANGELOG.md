@@ -4,6 +4,8 @@ All notable changes to `masilia/ibexa-admin-kit` are documented here. The format
 
 ## [Unreleased]
 
+## [0.1.4] - 2026-11-19
+
 ### Added
 - Docs: a *With Symfony Flex* section in the README and in the skill: the Masilia recipes (`MasiliaLabs/recipes`) enable the bundle and write its route and config files on `composer require`.
 
@@ -39,7 +41,8 @@ First release: the React components of the Masilia admin pages in the design of 
 - Helpers: `http`, `i18n`, `notify`, `udw`, `adapters`, `useDebounced`.
 - The bundle that registers the `@masilia-admin-kit` alias in Ibexa's Encore configuration.
 
-[Unreleased]: https://github.com/MasiliaLabs/ibexa-admin-kit/compare/0.1.3...HEAD
+[Unreleased]: https://github.com/MasiliaLabs/ibexa-admin-kit/compare/0.1.4...HEAD
+[0.1.4]: https://github.com/MasiliaLabs/ibexa-admin-kit/compare/0.1.3...0.1.4
 [0.1.3]: https://github.com/MasiliaLabs/ibexa-admin-kit/compare/0.1.2...0.1.3
 [0.1.2]: https://github.com/MasiliaLabs/ibexa-admin-kit/compare/0.1.1...0.1.2
 [0.1.1]: https://github.com/MasiliaLabs/ibexa-admin-kit/compare/0.1.0...0.1.1
