@@ -4,6 +4,8 @@ All notable changes to `masilia/ibexa-admin-kit` are documented here. The format
 
 ## [Unreleased]
 
+## [0.1.6] - 2026-11-20
+
 ### Added
 - Docs: a *Stay informed* section in the README: how to be told of new releases (GitHub Watch, the releases feed, `composer outdated`, Dependabot) and where to read what changes.
 
@@ -49,7 +51,8 @@ First release: the React components of the Masilia admin pages in the design of 
 - Helpers: `http`, `i18n`, `notify`, `udw`, `adapters`, `useDebounced`.
 - The bundle that registers the `@masilia-admin-kit` alias in Ibexa's Encore configuration.
 
-[Unreleased]: https://github.com/MasiliaLabs/ibexa-admin-kit/compare/0.1.5...HEAD
+[Unreleased]: https://github.com/MasiliaLabs/ibexa-admin-kit/compare/0.1.6...HEAD
+[0.1.6]: https://github.com/MasiliaLabs/ibexa-admin-kit/compare/0.1.5...0.1.6
 [0.1.5]: https://github.com/MasiliaLabs/ibexa-admin-kit/compare/0.1.4...0.1.5
 [0.1.4]: https://github.com/MasiliaLabs/ibexa-admin-kit/compare/0.1.3...0.1.4
 [0.1.3]: https://github.com/MasiliaLabs/ibexa-admin-kit/compare/0.1.2...0.1.3
