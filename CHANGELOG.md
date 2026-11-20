@@ -4,6 +4,9 @@ All notable changes to `masilia/ibexa-admin-kit` are documented here. The format
 
 ## [Unreleased]
 
+### Fixed
+- Docs: `react-popper` (imported by the dropdown of the Ibexa Design System, not declared by Ibexa) must be installed with `yarn add react-popper @popperjs/core` before `composer require`; README and skill say so.
+
 ## [0.1.4] - 2026-11-19
 
 ### Added

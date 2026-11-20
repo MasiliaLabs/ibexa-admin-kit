@@ -35,7 +35,10 @@ It reuses what Ibexa already has instead of copying it: the global CSS classes o
 
 ## Installation
 
+The components use the dropdown of the Ibexa Design System, which imports `react-popper`; Ibexa's `admin-ui-assets` ships that file but does not declare the package, and a project does not have it by default. Install it **before** requiring the kit (and the packages that use it: `ibexa-sites`, `ibexa-ai`, `ibexa-icons`), otherwise the admin build run by Composer's post-update scripts fails with `contains a reference to the file "react-popper"`, and the instructions of the recipes are not printed:
+
 ```bash
+yarn add react-popper @popperjs/core
 composer require masilia/ibexa-admin-kit
 ```
 
