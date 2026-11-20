@@ -8,7 +8,7 @@ description: Build or change React admin pages for Ibexa 5 with masilia/ibexa-ad
 React components with the classes, behaviour and design system of the Ibexa admin, shared by the Masilia admin pages (`ibexa-sites`, `ibexa-ai`) and usable in any Ibexa 5 bundle. It copies nothing from Ibexa: it reuses the global admin CSS classes, `@ids-components` and Ibexa's helpers, so pages follow the admin when it changes.
 
 ## Set it up in a project
-First `yarn add react-popper @popperjs/core` (the Ibexa design system dropdown imports `react-popper` and Ibexa does not declare it: without it the admin build fails with `contains a reference to the file "react-popper"`, also in Composer's post-update scripts, and the recipe instructions are not printed). Do it **before** `composer require`.
+`react-popper` (imported by the Ibexa design system dropdown, not declared by Ibexa) needs nothing from you: since 0.1.5 the kit aliases it to a stand-in (`shims/react-popper.js`, a `usePopper` on `@popperjs/core`) when the project does not have the real one. With an older kit the build fails with `contains a reference to the file "react-popper"`: update the kit, or `yarn add react-popper @popperjs/core`.
 1. `composer require masilia/ibexa-admin-kit`, then enable `Masilia\Bundle\IbexaAdminKit\MasiliaIbexaAdminKitBundle` in `config/bundles.php` (it has no PHP to wire: it only ships `Resources/encore/ibexa.config.setup.js`, which adds the alias `@masilia-admin-kit`).
 2. `php bin/console cache:clear` (regenerates `var/encore`), `yarn ibexa-generate-tsconfig` (TypeScript paths), `php bin/console ibexa:encore:compile` (not `yarn encore dev --config-name ibexa`: that config does not exist on a blank project). Inside DDEV prefix with `ddev exec`.
 

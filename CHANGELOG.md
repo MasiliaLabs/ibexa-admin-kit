@@ -5,7 +5,7 @@ All notable changes to `masilia/ibexa-admin-kit` are documented here. The format
 ## [Unreleased]
 
 ### Fixed
-- Docs: `react-popper` (imported by the dropdown of the Ibexa Design System, not declared by Ibexa) must be installed with `yarn add react-popper @popperjs/core` before `composer require`; README and skill say so.
+- The admin build no longer fails on a project that does not have `react-popper` ("contains a reference to the file react-popper"): the dropdown of the Ibexa Design System imports it and Ibexa does not declare it. The Encore setup aliases `react-popper` to a stand-in for the `usePopper` hook (`shims/react-popper.js`, on `@popperjs/core`) only when the project does not have the real package; nothing to install.
 
 ## [0.1.4] - 2026-11-19
 
