@@ -16,7 +16,10 @@ interface TabsProps {
     label: string;
 }
 
-/** The admin's tabs: the rounded tab with its corner, and the panel of the active one below. */
+/**
+ * The admin's tabs: the rounded tab with its corner, and the panel of the active one below. The tabs and the panel are one block: the panel
+ * overlaps the bottom border of the tab by a pixel, so a page that lays its content out with a gap (a flex column) must not put the gap between them.
+ */
 export function Tabs({ tabs, active, onChange, label }: TabsProps): React.ReactElement {
     const group = useId();
     const refs = useRef(new Map<string, HTMLAnchorElement>());
@@ -32,7 +35,7 @@ export function Tabs({ tabs, active, onChange, label }: TabsProps): React.ReactE
     };
 
     return (
-        <>
+        <div className="masilia-kit-tabs">
             <div className="ibexa-header">
                 <div className="ibexa-tabs">
                     <ul className="nav nav-tabs ibexa-tabs__list" role="tablist" aria-label={label} onKeyDown={onKeyDown}>
@@ -78,6 +81,6 @@ export function Tabs({ tabs, active, onChange, label }: TabsProps): React.ReactE
                     </div>
                 ))}
             </div>
-        </>
+        </div>
     );
 }
