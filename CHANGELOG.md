@@ -27,10 +27,10 @@ All notable changes to `masilia/ibexa-admin-kit` are documented here. The format
 - `TableHeader`: `headline` may be any content, not only a text (the title with its count reads the same).
 - The error row of a field has the icon of an error, as the admin's forms draw it.
 - `IconSvg` accepts every size of the admin's icon (`tiny` to `extra-large`).
+- The actions of a `TableHeader` may wrap onto a second line and lean on the end of the line (`masilia-kit-actions`), for every header, with or without `tags`. It only shows when the actions no longer fit.
 
 ### Fixed
 - `Tabs`: the tabs and their panel are one element (`masilia-kit-tabs`). In a page that lays its content out with a gap (a flex column, as the sites page does) the gap used to open between the active tab and its panel, which the admin draws one pixel overlapping.
-- The actions of a `TableHeader` may wrap onto a second line and lean on the end of the line (`masilia-kit-actions`), for every header, with or without `tags`. It only shows when the actions no longer fit.
 
 ## [0.1.6] - 2026-11-20
 
