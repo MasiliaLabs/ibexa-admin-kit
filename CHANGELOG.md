@@ -20,6 +20,7 @@ All notable changes to `masilia/ibexa-admin-kit` are documented here. The format
 - `TaggifyField` (the admin's tag field, with the rules of its script written for React: tags with a remove button, end keys and separators, a pattern, adding when the field loses the focus) and `DateTimeField` (the admin's own date picker, driven from React: it shows the clock of the admin's time zone and gives the moment back in seconds; the browser's date and time field when the admin's script is not on the page).
 - `RadioGroupField` and `ToggleField` (the design system's radio buttons and toggle in the frame of a field), `Details` (the admin's "details" block, a long value can be expanded), `AnchorNavigation` and `AnchorSection` (a long page cut into sections with the admin's anchor menu, the entry of the section being read is lit), and `Autosave` (the design system's, typed).
 - The context menu of the admin: `ContextSlot` draws a button in an item of `.ibexa-context-menu` (under `.ibexa-content-menu-wrapper`), `ContextButton` is the button with the markup of the admin's own, `SplitButton` is the admin's split button ("Save and close" and its chevron) and `PopupMenu` / `PopupMenuItem` its menu. `useDismissable` closes a floating element on Escape or a press outside.
+- `CapsTag`: a badge whose text is in capitals (a language code). Capitals are centred by the font as they are, so this badge is not raised like the others.
 - `Popover`: a window that floats over the page next to what it edits, with an optional header and footer.
 - A page template, `@ibexadesign/masilia_kit/page.html.twig`: the layout of the admin, the breadcrumbs, the title, the root of the React app with its `data-*` attributes, its Encore entry and the items of the context menu, set by the page with a few `kit_*` variables. It is tested with PHPUnit (`vendor/bin/phpunit`) and by a CI job.
 
@@ -30,6 +31,7 @@ All notable changes to `masilia/ibexa-admin-kit` are documented here. The format
 - The actions of a `TableHeader` may wrap onto a second line and lean on the end of the line (`masilia-kit-actions`), for every header, with or without `tags`. It only shows when the actions no longer fit.
 
 ### Fixed
+- The text of a small badge is centred as the eye sees it. The box of the text was centred, but the font keeps a tall space above lower-case letters, so the body of "write", "yes" or "3 read" sat about a pixel under the middle of the badge. It is raised by 0.08em (1px) for the small badge, the one the pages use; the medium badge, already centred on a 1x screen, is untouched.
 - `createTranslator` ignores a global `Translator` that has no `trans` method. Recent browsers have a built-in `Translator` (the translation API): where the admin's own had not replaced it, every text call failed and the page stayed blank.
 - `Tabs`: the tabs and their panel are one element (`masilia-kit-tabs`). In a page that lays its content out with a gap (a flex column, as the sites page does) the gap used to open between the active tab and its panel, which the admin draws one pixel overlapping.
 

@@ -655,3 +655,22 @@ $header-height: calculateRem(73px);
         }
     }
 }
+
+// ----- The text of a small badge, centred as the eye sees it
+// The box of the text is centred in the badge, but the font (Noto Sans) keeps a tall space above the lower-case letters: their body sits
+// about 0.1em under the middle of the badge (1px in a small one, on a 1x screen too), where capitals are right. The text is raised by that,
+// so the lower-case words that most badges hold ("write", "yes", "3 read") are centred. Only the small badge, the one the pages use: the
+// medium one is already centred on a 1x screen.
+.ids-tag--small .ids-tag__content {
+    position: relative;
+    top: -0.08em;
+}
+
+// A badge of capitals (CapsTag) is not raised: the font centres capitals as they are
+.masilia-kit-caps {
+    display: inline-flex;
+
+    .ids-tag .ids-tag__content {
+        top: 0;
+    }
+}
