@@ -1,0 +1,77 @@
+{#
+    The skeleton of an admin page of the Masilia packages: the layout of the admin, the breadcrumbs, the title, the root the React app
+    mounts on, its Encore entry, and the items of the context menu (under ".ibexa-content-menu-wrapper") the app draws its buttons in.
+
+    A page extends it and sets what it needs OUTSIDE any block:
+
+        {% extends '@ibexadesign/masilia_kit/page.html.twig' %}
+        {% trans_default_domain 'masilia_sites' %}
+        {% set kit_title = 'sites.title'|trans %}
+        {% set kit_entry = 'masilia-sites-react' %}
+        {% set kit_root = { id: 'masilia-sites-root', data: { api: path('masilia.sites.api.data') } } %}
+
+    kit_title        the title of the page, also its breadcrumb when kit_breadcrumbs is not set
+    kit_breadcrumbs  the breadcrumbs after "Admin": a list of { value, url? }
+    kit_entry        the name of the Encore entry of the `ibexa` build: its stylesheet and script are "ibexa-admin-ui-<entry>-css|js"
+    kit_root         { id, data } the element the app mounts on, and its data-* attributes (values are escaped here)
+    kit_container    true to put the app in the container of the admin's lists (their width, margins and card)
+    kit_body_class   a class of the body
+    kit_actions      the names of the actions the app draws in the context menu, in order (ids "masilia-kit-context-<name>", see
+                     ContextSlot): the menu is drawn when there is at least one
+
+    Blocks a page may fill: kit_before_root, kit_after_root.
+#}
+{% extends "@ibexadesign/ui/layout.html.twig" %}
+
+{% block body_class %}{{ kit_body_class|default('') }}{% endblock %}
+
+{% block stylesheets %}
+    {% if kit_entry is defined %}
+        {{ encore_entry_link_tags('ibexa-admin-ui-' ~ kit_entry ~ '-css', null, 'ibexa') }}
+    {% endif %}
+{% endblock %}
+
+{% block breadcrumbs %}
+    {% include '@ibexadesign/ui/breadcrumbs.html.twig' with { items: [
+        { value: 'breadcrumb.admin'|trans(domain='messages')|desc('Admin') },
+    ]|merge(kit_breadcrumbs|default([{ value: kit_title }])) } %}
+{% endblock %}
+
+{% block title %}{{ kit_title }}{% endblock %}
+
+{% block header %}
+    {% include '@ibexadesign/ui/page_title.html.twig' with { title: kit_title } %}
+{% endblock %}
+
+{# The context menu of the admin, with an empty item per action: the app draws a button in each. The admin builds the "more" menu of that
+   menu once, when the page loads and the items are empty, so "force-show" keeps them out of it; an item with nothing in it takes no room. #}
+{% block context_menu %}
+    {% if kit_actions|default([])|length > 0 %}
+        {% set menu_items %}
+            {% for name in kit_actions %}
+                <li id="masilia-kit-context-{{ name }}" class="ibexa-context-menu__item ibexa-adaptive-items__item ibexa-adaptive-items__item--force-show masilia-kit-context-item"></li>
+            {% endfor %}
+        {% endset %}
+
+        {{ include('@ibexadesign/ui/component/context_menu/context_menu.html.twig', { menu_items: menu_items }) }}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    {% block kit_before_root %}{% endblock %}
+    {% if kit_container|default(false) %}<section class="container ibexa-container">{% endif %}
+    <div
+        id="{{ kit_root.id }}"
+        {% for name, value in kit_root.data|default({}) %}
+            data-{{ name }}="{{ value|e('html_attr') }}"
+        {% endfor %}
+    ></div>
+    {% if kit_container|default(false) %}</section>{% endif %}
+    {% block kit_after_root %}{% endblock %}
+{% endblock %}
+
+{% block javascripts %}
+    {% if kit_entry is defined %}
+        {{ encore_entry_script_tags('ibexa-admin-ui-' ~ kit_entry ~ '-js', null, 'ibexa') }}
+    {% endif %}
+{% endblock %}

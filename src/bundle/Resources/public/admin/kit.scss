@@ -523,3 +523,61 @@ $header-height: calculateRem(73px);
         }
     }
 }
+
+// ----- The context menu of the admin: the items the app draws in, and the split button
+// A slot with nothing in it (no right to do it, nothing to do) takes no room: an item of the menu has a margin of its own
+.masilia-kit-context-item:empty {
+    display: none;
+}
+
+// The menu of a split button opens under it, from its left edge, as the admin's does (the menu of "more" of the context menu has a fixed place)
+.masilia-kit-split {
+    position: relative;
+}
+
+.masilia-kit-split > .ibexa-popup-menu,
+.ibexa-context-menu .masilia-kit-split > .ibexa-popup-menu {
+    top: calc(100% + #{calculateRem(8px)});
+    right: auto;
+    inset-inline-start: 0;
+    min-width: calculateRem(200px);
+}
+
+// ----- A window that floats over the page next to what it edits (Popover): the page places it, the kit draws it
+.masilia-kit-popover {
+    position: absolute;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    width: calculateRem(340px);
+    max-width: calc(100% - #{calculateRem(16px)});
+    max-height: calc(100% - #{calculateRem(16px)});
+    background: ibexa.$ibexa-color-white;
+    border: 1px solid ibexa.$ibexa-color-light;
+    border-radius: ibexa.$ibexa-border-radius;
+    box-shadow: 0 calculateRem(8px) calculateRem(24px) rgb(0 0 0 / 0.18);
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: calculateRem(4px) calculateRem(8px) calculateRem(4px) calculateRem(16px);
+        border-bottom: 1px solid ibexa.$ibexa-color-light;
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        gap: calculateRem(16px);
+        padding: calculateRem(16px);
+        overflow-y: auto;
+
+        .masilia-kit-field { margin-bottom: 0; }
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: flex-end;
+        padding: 0 calculateRem(16px) calculateRem(16px);
+    }
+}

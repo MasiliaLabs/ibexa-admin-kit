@@ -13,6 +13,9 @@ All notable changes to `masilia/ibexa-admin-kit` are documented here. The format
 - `TextAreaField`, `SegmentedField` (the design system's alternative radio buttons in the frame of a field) and `ColorField` (the browser's picker, the #RRGGBB written out, colours to start from, warnings given by the page), with `parseHex`.
 - `AdminProviders` (what the design system's components need around them: their texts and the icons of the admin), `languageLabel` (a language named in the language of the admin), `downloadFile`, and `route` (the routes the admin exposes to its scripts).
 - `Icon` and `AltRadiosListField` of the design system, typed.
+- The context menu of the admin: `ContextSlot` draws a button in an item of `.ibexa-context-menu` (under `.ibexa-content-menu-wrapper`), `ContextButton` is the button with the markup of the admin's own, `SplitButton` is the admin's split button ("Save and close" and its chevron) and `PopupMenu` / `PopupMenuItem` its menu. `useDismissable` closes a floating element on Escape or a press outside.
+- `Popover`: a window that floats over the page next to what it edits, with an optional header and footer.
+- A page template, `@ibexadesign/masilia_kit/page.html.twig`: the layout of the admin, the breadcrumbs, the title, the root of the React app with its `data-*` attributes, its Encore entry and the items of the context menu, set by the page with a few `kit_*` variables. It is tested with PHPUnit (`vendor/bin/phpunit`) and by a CI job.
 
 ### Changed
 - `TableHeader`: `headline` may be any content, not only a text (the title with its count reads the same).
