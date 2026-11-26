@@ -16,7 +16,10 @@ With the Masilia recipes endpoint in the `composer.json` (`https://api.github.co
 
 ## Use it in an admin page
 - Declare the page entries in the bundle's `Resources/encore/ibexa.config.js` (the `ibexa` build), import through the alias: `import { DropdownField } from '@masilia-admin-kit/Dropdown'`. Styles: `@use '@masilia-admin-kit/kit';`.
-- Catalogue (look at the files under `src/bundle/Resources/public/admin/` before writing a new one): fields (`Field`: TextField; `Dropdown`: DropdownField, MultiDropdownField; `Checkbox`; `OrderedChoice`), layout (`Tabs`, `Section`, `Table`: TableHeader/DataTable, `FilterCard`/`FilterSelect`/`SearchInput`), feedback (`Notice`, `StatusTag`, `StatTile`, `Spinner`, `notify`), actions (`IconButton`, `ExternalLink`, `Dialog`, `ConfirmDialog`), content (`UdwPicker`), helpers (`http`, `i18n`, `udw`, `adapters`, `useDebounced`).
+- Catalogue (look at the files under `src/bundle/Resources/public/admin/` before writing a new one): fields (`Field`: TextField, TextAreaField; `Dropdown`: DropdownField, MultiDropdownField; `Checkbox`; `RadioGroup`; `Toggle`; `Segmented`; `ColorField`; `DateTimeField`; `TaggifyField`; `OrderedChoice`; `UdwPicker`), layout (`Tabs`, `Section`, `Table`: TableHeader/DataTable with `selection` and `sort`, `Pagination`, `FilterCard`: FilterSelect/FilterButton, `SearchInput`, `Details`, `AnchorNavigation`, `Layout`: Inline/Muted/FormStack/Toolbar), feedback (`Alert`, `FormError`, `Notice`, `InfoTip`, `StatusTag`, `StatTile`, `Spinner`, `notify`), actions (`LinkButton`, `IconButton`, `ExternalLink`, `Dialog`, `ConfirmDialog`, `Popover`), the context menu (`ContextMenu`: ContextSlot/ContextButton, `SplitButton`, `PopupMenu`), helpers (`http`, `i18n`, `AdminProviders`, `admin`: route/csrfToken, `language`, `files`, `udw`, `adapters`, `useDebounced`).
+- **No `ibexa-*` class written by hand in a package.** An alert, a link that looks like a button, an error row, a tooltip, a button of the filter bar… all have a component here: use it. A class that no component carries is a component the kit lacks: add it (see below). Only the very custom styles of a page belong to the package.
+- The page itself: extend `@ibexadesign/masilia_kit/page.html.twig` and set `kit_title`, `kit_entry`, `kit_root` (and `kit_container`, `kit_breadcrumbs`, `kit_actions`) outside any block; do not copy the layout, breadcrumbs and entry tags of another page. Buttons of the context menu: `ContextSlot name="save"` + `ContextButton`, with `kit_actions = ['save']` in the template.
+- Tooltips are the admin's own: give the element a `title` (as `InfoTip` and the design system's `Button` do). Do not draw one.
 - Server calls: use `http` (it sends the admin CSRF token, returns errors as values and problems by field). Do not hand-roll `fetch`.
 - Texts: your own translation domain, published with `bazinga_js_translation.active_domains`, with English defaults given to `createTranslator`; dump with `bazinga:js-translation:dump public/assets --merge-domains` and rebuild.
 
@@ -26,6 +29,8 @@ With the Masilia recipes endpoint in the `composer.json` (`https://api.github.co
 - ts-loader fails the build on a type error: read the Encore output, do not ignore it.
 - Browsers cache `/assets/ibexa/build/*.js` without a hash: after a rebuild ask for a hard reload.
 - Never type passwords into the admin for the user; they sign in themselves.
+
+- A pure module must not differ from its component by case only (`details.ts` next to `Details.tsx`): esbuild and case-insensitive file systems resolve the import to the component. Name it for what it does (`detailsContent.ts`, `pages.ts`, `contextSlots.ts`).
 
 ## When something is missing
 Add the component to the kit (not to the page), with its pure logic in a `.ts` file and a test, then follow the `masilia-package-release` skill to release it before dependent packages.

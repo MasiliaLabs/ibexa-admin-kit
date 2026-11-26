@@ -20,12 +20,13 @@ It reuses what Ibexa already has instead of copying it: the global CSS classes o
 
 | Area | Components and helpers |
 | --- | --- |
-| Fields | `TextField` (text, number, password, url), `DropdownField` and `MultiDropdownField` (search included), `Checkbox`, `CheckboxGroup`, `OrderedChoice` (an ordered list: up, down, remove, add) |
-| Layout | `Tabs` (the tabs of the admin, with keyboard navigation), `Section` (an accordion section), `TableHeader` and `DataTable` (zebra rows, sticky actions column, empty state), `FilterCard` with `FilterSelect` and `SearchInput` (the adaptive filters bar) |
-| Feedback | `Notice` (the informative text of a table header), `StatusTag`, `StatTile`, `Spinner`, `notify()` (Ibexa's toast) |
-| Actions | `IconButton` (with a busy state), `ExternalLink`, `Dialog` and `ConfirmDialog` (focus trap, Escape, side panel or centred) |
-| Content | `UdwPicker`: choose a location with the Universal Discovery Widget and show its name and path |
-| Helpers | `http` (JSON calls with the admin's CSRF token, errors as values, problems by field), `i18n` (the Bazinga JS translator with English fallbacks), `udw`, `adapters`, `useDebounced` |
+| Fields | `TextField` (text, number, password, url), `TextAreaField`, `DropdownField` and `MultiDropdownField` (search included), `Checkbox` and `CheckboxGroup`, `RadioGroupField`, `ToggleField`, `SegmentedField`, `ColorField`, `DateTimeField` (the admin's own date picker), `TaggifyField` (tags), `OrderedChoice` (an ordered list), `UdwPicker` (the content browser) |
+| Layout | `Tabs`, `Section` (an accordion section), `TableHeader` (with badges beside the title) and `DataTable` (zebra rows, sticky actions column, empty state, rows that can be chosen, sortable headers), `Pagination`, `FilterCard` with `FilterSelect`, `FilterButton` and `SearchInput` (the adaptive filters bar), `Details`, `AnchorNavigation` and `AnchorSection`, `Inline`, `Muted`, `FormStack`, `Toolbar` |
+| Feedback | `Alert` (the admin's alert), `FormError` (the error row of a form), `Notice` (the informative text of a table header), `InfoTip` (an icon with the admin's own tooltip), `StatusTag`, `StatTile`, `Spinner`, `Autosave`, `notify()` (Ibexa's toast) |
+| Actions | `LinkButton` (a link drawn as a button), `IconButton` (with a busy state), `ExternalLink`, `Dialog` and `ConfirmDialog` (focus trap, Escape, side panel or centred), `Popover` (a window next to what it edits) |
+| The context menu | `ContextSlot` and `ContextButton` (a button drawn in the context menu of the admin, under `.ibexa-content-menu-wrapper`), `SplitButton` ("Save and close" and its chevron), `PopupMenu` and `PopupMenuItem` |
+| Pages | `@ibexadesign/masilia_kit/page.html.twig`: the layout, the breadcrumbs, the title, the root of the React app and its Encore entry, and the items of the context menu (see [Admin pages](#admin-pages)) |
+| Helpers | `http` (JSON calls with the admin's CSRF token, errors as values, problems by field), `i18n` (the Bazinga JS translator with English fallbacks), `AdminProviders` (what the design system's components need around them), `route`, `languageLabel`, `downloadFile`, `udw`, `adapters`, `useDebounced` |
 
 ## Requirements
 
@@ -111,6 +112,42 @@ Things to know:
 - Components must be built by the **`ibexa`** Encore configuration (the admin's), not by the front-office one.
 - Texts come from your own translation domain: publish it with `bazinga_js_translation.active_domains` and give `createTranslator` your English defaults.
 
+## Admin pages
+
+A page of an admin bundle is a Twig template that draws the layout of the admin and a root the React app mounts on. The kit has the skeleton of it: the page extends it and sets a few variables **outside any block**.
+
+```twig
+{% extends '@ibexadesign/masilia_kit/page.html.twig' %}
+
+{% trans_default_domain 'my_bundle' %}
+
+{% set kit_title = 'page.title'|trans %}
+{% set kit_entry = 'my-bundle-react' %}   {# the Encore entry of the `ibexa` build: its stylesheet and script are ibexa-admin-ui-my-bundle-react-css|js #}
+{% set kit_root = { id: 'my-bundle-root', data: { api: path('my_bundle.api') } } %}
+{% set kit_container = true %}            {# the container of the admin's lists: their width, margins and card #}
+{% set kit_actions = ['save', 'publish'] %} {# the buttons the app draws in the context menu, in order #}
+```
+
+| Variable | |
+| --- | --- |
+| `kit_title` | The title of the page (also its last breadcrumb when `kit_breadcrumbs` is not set) |
+| `kit_breadcrumbs` | The breadcrumbs after "Admin": a list of `{ value, url? }` |
+| `kit_entry` | The name of the Encore entry |
+| `kit_root` | `{ id, data }`: the element the app mounts on and its `data-*` attributes (escaped for you) |
+| `kit_container` | `true` to put the app in the container of the admin's lists |
+| `kit_body_class` | A class of the body |
+| `kit_actions` | The names of the actions the app draws in the context menu. The menu is drawn when there is at least one |
+
+The blocks `kit_before_root` and `kit_after_root` hold what a page needs next to the root. In the app, `ContextSlot` draws a button in the item of an action:
+
+```tsx
+import { ContextButton, ContextSlot } from '@masilia-admin-kit/ContextMenu';
+
+<ContextSlot name="save"><ContextButton variant="primary" onClick={save}>Save</ContextButton></ContextSlot>
+```
+
+The context menu of the admin builds its "more" menu once, when the page loads and the items are still empty: the items of the skeleton are marked so that the admin never moves them there, and an item with nothing in it takes no room.
+
 ## Tests
 
 The logic that does not need a browser is tested with Node's built-in runner, with nothing to install:
@@ -118,6 +155,13 @@ The logic that does not need a browser is tested with Node's built-in runner, wi
 ```bash
 cd src/bundle/Resources/public/admin
 node --experimental-strip-types --import ./test-hooks/register.mjs --test *.test.ts
+```
+
+The page template is tested with PHPUnit:
+
+```bash
+composer install
+vendor/bin/phpunit
 ```
 
 ## AI agent skill

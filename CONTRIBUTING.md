@@ -20,7 +20,9 @@ cd src/bundle/Resources/public/admin
 node --experimental-strip-types --import ./test-hooks/register.mjs --test *.test.ts
 ```
 
-The scripts of the admin are written in TypeScript. Their tests run with Node 24 as they are, without any package to install: the logic that is tested lives in `.ts` files, the components in `.tsx` files are checked by the build of the project that uses the package.
+The page template (`src/bundle/Resources/views/themes/admin/masilia_kit/page.html.twig`) is tested with PHPUnit: `composer install && vendor/bin/phpunit`.
+
+The scripts of the admin are written in TypeScript. Their tests run with Node 24 as they are, without any package to install: the logic that is tested lives in `.ts` files, the components in `.tsx` files are checked by the build of the project that uses the package. Name the pure module of a component for what it does, not after the component: `details.ts` next to `Details.tsx` collide on a file system that ignores case.
 
 ## Pull requests
 
