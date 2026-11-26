@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { afterEach, test } from 'node:test';
 
-import { adminHeaders, csrfToken, route } from './admin';
+import { adminHeaders, csrfHeaders, csrfToken, route } from './admin';
 
 afterEach(() => {
     delete (globalThis as { Routing?: unknown }).Routing;
@@ -22,4 +22,14 @@ test('without the router of the admin, saying so is better than a wrong address'
 test('without a page there is no token, and the headers still ask for JSON', () => {
     assert.equal(csrfToken(), '');
     assert.deepEqual(adminHeaders({ 'X-Extra': '1' }), { 'Content-Type': 'application/json', Accept: 'application/json', 'X-CSRF-Token': '', 'X-Extra': '1' });
+});
+
+test('an upload carries the token and nothing about its body', () => {
+    assert.deepEqual(csrfHeaders(), { 'X-CSRF-Token': '' });
+    assert.deepEqual(csrfHeaders({ Accept: 'application/json' }), { 'X-CSRF-Token': '', Accept: 'application/json' });
+    assert.equal('Content-Type' in csrfHeaders(), false);
+});
+
+test('what a request asks for wins over the JSON defaults', () => {
+    assert.equal(adminHeaders({ Accept: 'text/event-stream' }).Accept, 'text/event-stream');
 });

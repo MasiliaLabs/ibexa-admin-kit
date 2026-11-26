@@ -27,7 +27,12 @@ export function csrfToken(): string {
     return document.querySelector<HTMLMetaElement>('meta[name="CSRF-Token"]')?.content ?? '';
 }
 
-/** The headers a request of a script of the admin carries: JSON both ways, and the token of the page. */
+/** The one header every request of a script of the admin carries: the token of the page, which the server checks. Nothing about the body (an upload sets its own `Content-Type`, with its boundary). */
+export function csrfHeaders(extra: Record<string, string> = {}): Record<string, string> {
+    return { 'X-CSRF-Token': csrfToken(), ...extra };
+}
+
+/** The headers a request of a script of the admin carries when it speaks JSON both ways: the token of the page, then `Content-Type` and `Accept`. */
 export function adminHeaders(extra: Record<string, string> = {}): Record<string, string> {
-    return { 'Content-Type': 'application/json', Accept: 'application/json', 'X-CSRF-Token': csrfToken(), ...extra };
+    return csrfHeaders({ 'Content-Type': 'application/json', Accept: 'application/json', ...extra });
 }
