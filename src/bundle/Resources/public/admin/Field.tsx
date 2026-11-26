@@ -140,3 +140,27 @@ export function TextAreaField({ label, value, onChange, required, hint, error, p
         </FieldFrame>
     );
 }
+
+interface InlineInputProps {
+    value: string;
+    onChange: (value: string) => void;
+    /** What the field is, for assistive technology: it has no label of its own, a placeholder says what to type */
+    ariaLabel: string;
+    placeholder?: string;
+    disabled?: boolean;
+}
+
+/** A small text field with no frame, for the actions of a header or a row ("add a category"): the admin's small input, next to its button. */
+export function InlineInput({ value, onChange, ariaLabel, placeholder, disabled }: InlineInputProps): React.ReactElement {
+    return (
+        <input
+            type="text"
+            className="ibexa-input ibexa-input--text ibexa-input--small form-control masilia-kit-inline-input"
+            value={value}
+            placeholder={placeholder}
+            aria-label={ariaLabel}
+            disabled={disabled}
+            onChange={(event) => onChange(event.target.value)}
+        />
+    );
+}

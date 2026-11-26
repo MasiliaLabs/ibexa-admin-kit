@@ -603,3 +603,8 @@ $header-height: calculateRem(73px);
         min-width: 0;
     }
 }
+
+// A small text field with no frame (InlineInput), in the actions of a header or a row
+.masilia-kit-inline-input {
+    width: calculateRem(240px);
+}
