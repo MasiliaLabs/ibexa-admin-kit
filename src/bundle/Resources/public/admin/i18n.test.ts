@@ -24,3 +24,12 @@ test('without a translator the defaults are used', () => {
 
     assert.equal(t('plain'), 'Plain');
 });
+
+test('a global Translator that is not the admin\'s (the browser\'s built-in one) is ignored', () => {
+    (globalThis as { Translator?: unknown }).Translator = class BuiltIn {};
+    try {
+        assert.equal(createTranslator(defaults, 'dom')('a.b', { name: 'Ada' }), 'Hello Ada');
+    } finally {
+        delete (globalThis as { Translator?: unknown }).Translator;
+    }
+});

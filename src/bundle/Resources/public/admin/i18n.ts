@@ -15,7 +15,9 @@ function fill(text: string, parameters: Record<string, string | number>): string
 
 export function createTranslator(defaults: Readonly<Record<string, string>>, domain: string, translator?: AdminTranslator): Translate {
     return (key, parameters = {}) => {
-        const admin = translator ?? (globalThis as { Translator?: AdminTranslator }).Translator;
+        // Not every global named `Translator` is the admin's: recent browsers have a built-in one (the translation API), which has no `trans`
+        const found = translator ?? (globalThis as { Translator?: Partial<AdminTranslator> }).Translator;
+        const admin = typeof found?.trans === 'function' ? (found as AdminTranslator) : undefined;
         const translated = admin !== undefined ? admin.trans(key, parameters, domain) : key;
 
         return translated !== key && translated !== '' ? translated : fill(defaults[key] ?? key, parameters);

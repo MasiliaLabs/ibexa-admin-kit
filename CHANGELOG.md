@@ -30,6 +30,7 @@ All notable changes to `masilia/ibexa-admin-kit` are documented here. The format
 - The actions of a `TableHeader` may wrap onto a second line and lean on the end of the line (`masilia-kit-actions`), for every header, with or without `tags`. It only shows when the actions no longer fit.
 
 ### Fixed
+- `createTranslator` ignores a global `Translator` that has no `trans` method. Recent browsers have a built-in `Translator` (the translation API): where the admin's own had not replaced it, every text call failed and the page stayed blank.
 - `Tabs`: the tabs and their panel are one element (`masilia-kit-tabs`). In a page that lays its content out with a gap (a flex column, as the sites page does) the gap used to open between the active tab and its panel, which the admin draws one pixel overlapping.
 
 ## [0.1.6] - 2026-11-20
