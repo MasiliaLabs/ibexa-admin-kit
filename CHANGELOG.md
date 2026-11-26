@@ -10,7 +10,7 @@ All notable changes to `masilia/ibexa-admin-kit` are documented here. The format
 - `InfoTip`: an information icon whose tooltip is the admin's own (the `title` attribute: Ibexa's tooltip helper handles the elements React adds), placed inside a dialog of the kit when it is in one.
 - `Inline`, `Muted`, `FormStack`, `Toolbar` and `ToolbarEnd` (`Layout`): the bricks a page composes instead of writing its own classes.
 - `TableHeader` takes `tags`: badges beside the title that stay with it when the actions wrap.
-- `TextAreaField`, `SegmentedField` (the design system's alternative radio buttons in the frame of a field) and `ColorField` (the browser's picker, the #RRGGBB written out, colours to start from, warnings given by the page), with `parseHex`.
+- `TextAreaField`, `SegmentedField` (a few choices side by side drawn as one segmented button, the chosen one in the colour of the primary action, in the frame of a field) and `ColorField` (the browser's picker, the #RRGGBB written out, colours to start from, warnings given by the page), with `parseHex`.
 - `AdminProviders` (what the design system's components need around them: their texts and the icons of the admin), `languageLabel` (a language named in the language of the admin), `downloadFile`, and `route` (the routes the admin exposes to its scripts).
 - `Icon`, `AltRadiosListField`, `RadioButtonsListField`, `ToggleButtonInput` and `Autosave` of the design system, typed.
 - `Pagination` (the admin's pagination, with the line that says how many items are shown; it reuses the admin's own `computePages`).

@@ -608,3 +608,50 @@ $header-height: calculateRem(73px);
 .masilia-kit-inline-input {
     width: calculateRem(240px);
 }
+
+// ----- A few choices side by side, one picked (SegmentedField): one segmented button, the chosen one in the colour of the primary action
+.masilia-kit-seg {
+    display: inline-flex;
+    overflow: hidden;
+    background: ibexa.$ibexa-color-white;
+    border: 1px solid ibexa.$ibexa-color-light-500;
+    border-radius: ibexa.$ibexa-border-radius;
+
+    &__item {
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding: calculateRem(6px) calculateRem(12px);
+        font-size: ibexa.$ibexa-text-font-size-small;
+        cursor: pointer;
+        border-inline-start: 1px solid ibexa.$ibexa-color-light-500;
+
+        &:first-child { border-inline-start: 0; }
+
+        // The radio covers its segment: a click anywhere on it chooses, and the keyboard and assistive technology see a real radio
+        input {
+            position: absolute;
+            inset: 0;
+            margin: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        &.is-active {
+            color: ibexa.$ibexa-color-white;
+            background: ibexa.$ibexa-color-primary;
+        }
+
+        &.is-disabled {
+            cursor: not-allowed;
+            opacity: 0.5;
+
+            input { cursor: not-allowed; }
+        }
+
+        &:focus-within {
+            outline: 2px solid ibexa.$ibexa-color-primary-300;
+            outline-offset: calculateRem(-2px);
+        }
+    }
+}
