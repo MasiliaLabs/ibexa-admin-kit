@@ -2,6 +2,7 @@ import React from 'react';
 import type { ReactNode } from 'react';
 
 import type { Option } from './adapters';
+import { buttonClassName } from './buttons';
 import { DropdownField } from './Dropdown';
 
 interface FilterCardProps {
@@ -45,4 +46,26 @@ export function FilterSelect({ label, value, options, emptyLabel, onChange, disa
             <DropdownField label={label} value={value} options={options} emptyLabel={emptyLabel} onChange={onChange} disabled={disabled} />
         </div>
     );
+}
+
+interface FilterButtonProps {
+    children: ReactNode;
+    onClick?: () => void;
+    /** `submit` is the bar's main action ("Apply", "Save", "Add"); `clear` takes the filters back (it is a ghost button in the admin) */
+    kind?: 'submit' | 'clear';
+    /** The admin's "Apply" is secondary; the one main action of a page's bar may be primary */
+    variant?: 'primary' | 'secondary';
+    /** A real submit of the form the bar belongs to */
+    submit?: boolean;
+    disabled?: boolean;
+    title?: string;
+}
+
+/** A button of the filter bar, at its end (`ibexa-adaptive-filters__submit-btn` / `__clear-btn`): its height and place are the bar's. */
+export function FilterButton({ children, onClick, kind = 'submit', variant = 'secondary', submit = false, disabled, title }: FilterButtonProps): React.ReactElement {
+    const className = kind === 'clear'
+        ? buttonClassName('ghost', { extra: 'ibexa-adaptive-filters__clear-btn' })
+        : buttonClassName(variant, { extra: 'ibexa-adaptive-filters__submit-btn' });
+
+    return <button type={submit ? 'submit' : 'button'} className={className} disabled={disabled} title={title} onClick={onClick}>{children}</button>;
 }

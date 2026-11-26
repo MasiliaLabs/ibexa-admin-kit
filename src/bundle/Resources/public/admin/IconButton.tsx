@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { buttonClassName } from './buttons';
 import { IconSvg } from './IconSvg';
 
 interface IconButtonProps {
@@ -14,7 +15,7 @@ interface IconButtonProps {
 
 /** A ghost button with an icon and no text, as the tables of the admin have for their actions. */
 export function IconButton({ icon, label, onClick, disabled, busy }: IconButtonProps): React.ReactElement {
-    const className = 'btn ibexa-btn ibexa-btn--ghost ibexa-btn--no-text';
+    const className = buttonClassName('ghost', { noText: true });
     const content = <span className={busy === true ? 'masilia-kit-spin' : undefined} style={{ display: 'inline-flex' }}><IconSvg name={icon} /></span>;
 
     return <button type="button" className={className} title={label} aria-label={label} disabled={disabled === true || busy === true} aria-busy={busy === true ? true : undefined} onClick={onClick}>{content}</button>;

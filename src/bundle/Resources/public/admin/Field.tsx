@@ -1,6 +1,8 @@
 import React, { useId } from 'react';
 import type { ReactNode } from 'react';
 
+import { FormErrorRow } from './FormError';
+
 interface FieldFrameProps {
     id: string;
     label: string;
@@ -31,7 +33,7 @@ export function FieldFrame({ id, label, required, hint, error, group, labelHidde
             )}
             {group === true ? <div role="group" aria-labelledby={`${id}-label`} aria-describedby={describedBy(id, hint, error)}>{children}</div> : children}
             <div className="ibexa-form-error" aria-live="polite">
-                {error !== undefined ? <em className="ibexa-form-error__row" id={`${id}-error`}>{error}</em> : null}
+                {error !== undefined ? <FormErrorRow id={`${id}-error`}>{error}</FormErrorRow> : null}
             </div>
             {hint !== undefined ? (
                 <div className="ibexa-form-help">
@@ -97,6 +99,44 @@ export function TextField({ label, value, onChange, type = 'text', required, hin
                     onBlur={onBlur}
                 />
             </div>
+        </FieldFrame>
+    );
+}
+
+interface TextAreaFieldProps {
+    label: string;
+    value: string;
+    onChange: (value: string) => void;
+    required?: boolean;
+    hint?: string;
+    error?: string;
+    placeholder?: string;
+    disabled?: boolean;
+    readOnly?: boolean;
+    rows?: number;
+    onBlur?: () => void;
+}
+
+/** A text over several lines, as the forms of the admin draw it: the same frame as `TextField`, the admin's textarea. */
+export function TextAreaField({ label, value, onChange, required, hint, error, placeholder, disabled, readOnly, rows = 3, onBlur }: TextAreaFieldProps): React.ReactElement {
+    const id = useId();
+
+    return (
+        <FieldFrame id={id} label={label} required={required} hint={hint} error={error}>
+            <textarea
+                id={id}
+                className={`ibexa-input ibexa-input--textarea form-control${error !== undefined ? ' is-invalid' : ''}`}
+                rows={rows}
+                value={value}
+                placeholder={placeholder}
+                disabled={disabled}
+                readOnly={readOnly}
+                required={required}
+                aria-invalid={error !== undefined}
+                aria-describedby={describedBy(id, hint, error)}
+                onChange={(event) => onChange(event.target.value)}
+                onBlur={onBlur}
+            />
         </FieldFrame>
     );
 }

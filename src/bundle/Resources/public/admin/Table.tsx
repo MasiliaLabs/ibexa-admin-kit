@@ -12,9 +12,12 @@ export interface Column<T> {
 }
 
 interface TableHeaderProps {
-    headline: string;
+    /** The title: a text, or what a title can hold (the name of a page and its status) */
+    headline: ReactNode;
     /** The count shown in the headline in brackets: "Links (124)" */
     count?: number;
+    /** Badges beside the title (a status, a version): they stay with it when the actions wrap */
+    tags?: ReactNode;
     actions?: ReactNode;
     /** An informative line under the title, in the headline (as the admin's table header does) */
     notice?: ReactNode;
@@ -23,14 +26,16 @@ interface TableHeaderProps {
 }
 
 /** The title of a table with its count, and the actions that go with it on the right, over a thin rule. */
-export function TableHeader({ headline, count, actions, notice, plain }: TableHeaderProps): React.ReactElement {
+export function TableHeader({ headline, count, tags, actions, notice, plain }: TableHeaderProps): React.ReactElement {
+    const title = count === undefined ? headline : <>{headline} ({count})</>;
+
     return (
         <div className={`ibexa-table-header${plain === true ? ' masilia-kit-table-header--plain' : ''}`}>
             <div className="ibexa-table-header__headline">
-                {count === undefined ? headline : `${headline} (${count})`}
+                {tags === undefined ? title : <span className="masilia-kit-inline">{title}{tags}</span>}
                 {notice !== undefined ? <Notice>{notice}</Notice> : null}
             </div>
-            <div className="ibexa-table-header__actions">{actions}</div>
+            <div className="ibexa-table-header__actions masilia-kit-actions">{actions}</div>
         </div>
     );
 }

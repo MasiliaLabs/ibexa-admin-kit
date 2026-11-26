@@ -4,6 +4,21 @@ All notable changes to `masilia/ibexa-admin-kit` are documented here. The format
 
 ## [Unreleased]
 
+### Added
+- `Alert`: the admin's alert (`ui/component/alert`), with an icon per type (info, error, warning, success), a title, a subtitle, more content, actions and a way to close it.
+- `LinkButton` (a link that looks like a button), `FormError` and `FormErrorRow` (the admin's error row, with its icon), `FilterButton` (the "Apply" and "Clear" buttons of the filter bar), and `buttonClassName` (the classes of a button of the admin, in one place).
+- `InfoTip`: an information icon whose tooltip is the admin's own (the `title` attribute: Ibexa's tooltip helper handles the elements React adds), placed inside a dialog of the kit when it is in one.
+- `Inline`, `Muted`, `FormStack`, `Toolbar` and `ToolbarEnd` (`Layout`): the bricks a page composes instead of writing its own classes.
+- `TableHeader` takes `tags`: badges beside the title that stay with it when the actions wrap.
+- `TextAreaField`, `SegmentedField` (the design system's alternative radio buttons in the frame of a field) and `ColorField` (the browser's picker, the #RRGGBB written out, colours to start from, warnings given by the page), with `parseHex`.
+- `AdminProviders` (what the design system's components need around them: their texts and the icons of the admin), `languageLabel` (a language named in the language of the admin), `downloadFile`, and `route` (the routes the admin exposes to its scripts).
+- `Icon` and `AltRadiosListField` of the design system, typed.
+
+### Changed
+- `TableHeader`: `headline` may be any content, not only a text (the title with its count reads the same).
+- The error row of a field has the icon of an error, as the admin's forms draw it.
+- `IconSvg` accepts every size of the admin's icon (`tiny` to `extra-large`).
+
 ## [0.1.6] - 2026-11-20
 
 ### Added

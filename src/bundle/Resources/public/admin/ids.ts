@@ -9,6 +9,8 @@ import type { ComponentType, ReactNode } from 'react';
 import * as ids from '@ids-components';
 // The package root does not re-export the chip: it is reached by its own path.
 import * as chipModule from '@ids-components/components/Chip';
+// The package root re-exports AltRadioInput but not the list field: it is reached by its own path.
+import * as altRadioList from '@ids-components/components/AltRadio/AltRadiosListField';
 
 export type ButtonType = 'primary' | 'secondary' | 'tertiary' | 'secondary-alt' | 'tertiary-alt';
 
@@ -88,6 +90,36 @@ export interface AccordionProps {
     children?: ReactNode;
 }
 
+export interface IconProps {
+    name: string;
+    size?: 'tiny' | 'tiny-small' | 'small' | 'medium' | 'large' | 'extra-large';
+    className?: string;
+}
+
+export interface AltRadioItem {
+    id: string;
+    value: string;
+    label: string;
+    /** The longer explanation, as a tooltip */
+    title?: string;
+    disabled?: boolean;
+    error?: boolean;
+}
+
+export interface AltRadiosListFieldProps {
+    id: string;
+    name: string;
+    /** The list's own label: leave it out inside a `FieldFrame`, which has the label */
+    label?: string;
+    items: AltRadioItem[];
+    value: string;
+    onChange: (value: string) => void;
+    direction?: 'horizontal' | 'vertical';
+    helperText?: string;
+    required?: boolean;
+    className?: string;
+}
+
 export interface TranslatorValue {
     trans: (id: string) => string;
 }
@@ -101,6 +133,7 @@ interface IdsComponents {
     Tag: ComponentType<TagProps>;
     Badge: ComponentType<BadgeProps>;
     Accordion: ComponentType<AccordionProps>;
+    Icon: ComponentType<IconProps>;
 }
 
 const components = ids as unknown as IdsComponents;
@@ -114,3 +147,5 @@ export const Tag = components.Tag;
 export const Chip = (chipModule as unknown as { Chip: ComponentType<ChipProps> }).Chip;
 export const Badge = components.Badge;
 export const Accordion = components.Accordion;
+export const Icon = components.Icon;
+export const AltRadiosListField = (altRadioList as unknown as { AltRadiosListField: ComponentType<AltRadiosListFieldProps> }).AltRadiosListField;

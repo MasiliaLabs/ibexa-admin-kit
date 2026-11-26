@@ -2,7 +2,8 @@ import React from 'react';
 
 import { iconPath } from './icons';
 
-type IconSize = 'small' | 'small-medium' | 'medium';
+/** The sizes of the admin's icon (`ibexa-icon--<size>`) */
+export type IconSize = 'tiny' | 'tiny-small' | 'small' | 'small-medium' | 'medium' | 'large' | 'extra-large';
 
 /** An icon of the admin's sprite, drawn with its own classes (same size and colour rules as the icons of its screens). */
 export function IconSvg({ name, size = 'small-medium', className = '' }: { name: string; size?: IconSize; className?: string }): React.ReactElement {

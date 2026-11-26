@@ -17,6 +17,8 @@
 @use '@ids-assets/scss/inputs/checkbox';
 @use '@ids-assets/scss/overflow-list';
 @use '@ids-assets/scss/inputs/dropdown';
+@use '@ids-assets/scss/inputs-list';
+@use '@ids-assets/scss/inputs/alt-radio';
 
 $radius: ibexa.$ibexa-border-radius;
 $transition: ibexa.$ibexa-admin-transition-duration ibexa.$ibexa-admin-transition;
@@ -399,4 +401,125 @@ $header-height: calculateRem(73px);
 .ibexa-table-header.masilia-kit-table-header--plain {
     border-bottom: 0;
     padding-bottom: calculateRem(8px);
+}
+
+// An information icon whose tooltip is the admin's own (the `title` attribute: nothing is drawn here but the icon)
+.masilia-kit-infotip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0;
+    color: ibexa.$ibexa-color-dark-400;
+    background: none;
+    border: 0;
+    cursor: help;
+
+    &:hover,
+    &:focus-visible {
+        color: ibexa.$ibexa-color-primary;
+    }
+
+    &:focus-visible {
+        outline: 2px solid ibexa.$ibexa-color-primary-300;
+        outline-offset: 2px;
+        border-radius: 50%;
+    }
+}
+
+// ----- Layout helpers: the bricks the pages of the packages compose instead of writing their own classes
+// Things side by side that wrap, centred, with a gap
+.masilia-kit-inline {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: calculateRem(8px);
+}
+
+// A quiet text
+.masilia-kit-muted {
+    color: ibexa.$ibexa-color-dark-400;
+    font-size: ibexa.$ibexa-text-font-size-small;
+}
+
+// The actions of a table header may wrap and lean on the end of the line (the admin's header keeps them on one line and has no room for more)
+.ibexa-table-header__actions.masilia-kit-actions {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    row-gap: calculateRem(8px);
+}
+
+// The fields of a page, under one another
+.masilia-kit-form {
+    display: flex;
+    flex-direction: column;
+    gap: calculateRem(16px);
+    max-width: calculateRem(720px);
+
+    &--wide {
+        max-width: none;
+    }
+}
+
+// Choices that act on what is below: one row on the bottom edge of their fields, closed by a rule
+.masilia-kit-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: calculateRem(16px);
+    padding-bottom: calculateRem(16px);
+    border-bottom: 1px solid ibexa.$ibexa-color-light;
+
+    // The field leaves room for an error under it that a toolbar never shows
+    .ibexa-form-error { display: none; }
+    .masilia-kit-field { margin-bottom: 0; }
+
+    // What leads away from the choices goes to the end of the line
+    &__end {
+        margin-inline-start: auto;
+    }
+}
+
+// ----- The colour field: the picker of the browser, the #RRGGBB written out, colours to start from
+.masilia-kit-color {
+    display: flex;
+    align-items: center;
+    gap: calculateRem(8px);
+
+    &__picker {
+        width: calculateRem(40px);
+        height: calculateRem(32px);
+        padding: 0;
+        cursor: pointer;
+        background: none;
+        border: 1px solid ibexa.$ibexa-color-light-500;
+        border-radius: ibexa.$ibexa-border-radius;
+    }
+
+    &__text {
+        max-width: calculateRem(120px);
+        font-family: monospace;
+    }
+}
+
+.masilia-kit-swatches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calculateRem(8px);
+    margin-top: calculateRem(8px);
+
+    &__item {
+        width: calculateRem(24px);
+        height: calculateRem(24px);
+        padding: 0;
+        cursor: pointer;
+        border: 2px solid ibexa.$ibexa-color-white;
+        border-radius: 50%;
+        box-shadow: 0 0 0 1px ibexa.$ibexa-color-light-500;
+
+        &.is-active { box-shadow: 0 0 0 2px ibexa.$ibexa-color-primary; }
+
+        &:focus-visible {
+            outline: 2px solid ibexa.$ibexa-color-primary-300;
+            outline-offset: 2px;
+        }
+    }
 }

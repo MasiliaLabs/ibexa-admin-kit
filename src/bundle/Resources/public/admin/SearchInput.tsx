@@ -1,6 +1,7 @@
 import React, { useId } from 'react';
 
 import { IconSvg } from './IconSvg';
+import { buttonClassName } from './buttons';
 
 interface SearchInputProps {
     value: string;
@@ -27,7 +28,7 @@ export function SearchInput({ value, onChange, placeholder, clearLabel }: Search
                 />
                 <div className="ibexa-input-text-wrapper__actions">
                     {value !== '' ? (
-                        <button type="button" className="btn ibexa-btn ibexa-btn--ghost ibexa-btn--no-text ibexa-input-text-wrapper__action-btn" title={clearLabel} aria-label={clearLabel} onClick={() => onChange('')}>
+                        <button type="button" className={buttonClassName('ghost', { noText: true, extra: 'ibexa-input-text-wrapper__action-btn' })} title={clearLabel} aria-label={clearLabel} onClick={() => onChange('')}>
                             <IconSvg name="discard" size="small" />
                         </button>
                     ) : null}
