@@ -19,6 +19,9 @@
 @use '@ids-assets/scss/inputs/dropdown';
 @use '@ids-assets/scss/inputs-list';
 @use '@ids-assets/scss/inputs/alt-radio';
+@use '@ids-assets/scss/inputs/radio-button';
+@use '@ids-assets/scss/inputs/toggle';
+@use '@ids-assets/scss/autosave';
 
 $radius: ibexa.$ibexa-border-radius;
 $transition: ibexa.$ibexa-admin-transition-duration ibexa.$ibexa-admin-transition;
@@ -579,5 +582,24 @@ $header-height: calculateRem(73px);
         display: flex;
         justify-content: flex-end;
         padding: 0 calculateRem(16px) calculateRem(16px);
+    }
+}
+
+// ----- Anchor navigation: the menu (the admin's) and the sections side by side; the menu stays in view while the sections scroll
+.masilia-kit-anchors {
+    display: flex;
+    align-items: flex-start;
+    gap: calculateRem(32px);
+
+    .ibexa-anchor-navigation-menu {
+        position: sticky;
+        top: 0;
+        flex: 0 0 auto;
+        width: calculateRem(220px);
+    }
+
+    &__sections {
+        flex: 1 1 auto;
+        min-width: 0;
     }
 }

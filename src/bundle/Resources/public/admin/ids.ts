@@ -120,6 +120,56 @@ export interface AltRadiosListFieldProps {
     className?: string;
 }
 
+export interface RadioButtonItem {
+    /** The design system's list does not give its items a key (React asks for one): the same as `id` */
+    key?: string;
+    id: string;
+    value: string;
+    label: string;
+    disabled?: boolean;
+    error?: boolean;
+}
+
+export interface RadioButtonsListFieldProps {
+    id: string;
+    name: string;
+    /** The list's own label: leave it out inside a `FieldFrame`, which has the label */
+    label?: string;
+    items: RadioButtonItem[];
+    value: string;
+    onChange: (value: string) => void;
+    direction?: 'horizontal' | 'vertical';
+    helperText?: string;
+    required?: boolean;
+    className?: string;
+}
+
+export interface ToggleButtonInputProps {
+    id?: string;
+    name?: string;
+    checked?: boolean;
+    disabled?: boolean;
+    /** Gets the new state */
+    onChange: (checked: boolean) => void;
+    /** What the switch says in each position (shown beside it) */
+    onLabel?: string;
+    offLabel?: string;
+    size?: 'medium' | 'small';
+    title?: string;
+}
+
+export type AutosaveStatusValue = 'on' | 'saving' | 'saved' | 'error';
+
+export interface AutosaveProps {
+    /** `on`: it saves by itself; `saving`, `saved` and `error` say where it is */
+    status: AutosaveStatusValue;
+    /** Autosave is on for this page at all */
+    isEnabled?: boolean;
+    /** When it last saved, as the text to show ("11:42") */
+    lastSavedTime?: string;
+    isDarkMode?: boolean;
+}
+
 export interface TranslatorValue {
     trans: (id: string) => string;
 }
@@ -134,6 +184,9 @@ interface IdsComponents {
     Badge: ComponentType<BadgeProps>;
     Accordion: ComponentType<AccordionProps>;
     Icon: ComponentType<IconProps>;
+    RadioButtonsListField: ComponentType<RadioButtonsListFieldProps>;
+    ToggleButtonInput: ComponentType<ToggleButtonInputProps>;
+    Autosave: ComponentType<AutosaveProps>;
 }
 
 const components = ids as unknown as IdsComponents;
@@ -149,3 +202,6 @@ export const Badge = components.Badge;
 export const Accordion = components.Accordion;
 export const Icon = components.Icon;
 export const AltRadiosListField = (altRadioList as unknown as { AltRadiosListField: ComponentType<AltRadiosListFieldProps> }).AltRadiosListField;
+export const RadioButtonsListField = components.RadioButtonsListField;
+export const ToggleButtonInput = components.ToggleButtonInput;
+export const Autosave = components.Autosave;
