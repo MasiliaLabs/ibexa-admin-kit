@@ -4,6 +4,8 @@ All notable changes to `masilia/ibexa-admin-kit` are documented here. The format
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-26
+
 ### Added
 - `Alert`: the admin's alert (`ui/component/alert`), with an icon per type (info, error, warning, success), a title, a subtitle, more content, actions and a way to close it.
 - `LinkButton` (a link that looks like a button), `FormError` and `FormErrorRow` (the admin's error row, with its icon), `FilterButton` (the "Apply" and "Clear" buttons of the filter bar), and `buttonClassName` (the classes of a button of the admin, in one place).
@@ -82,7 +84,8 @@ First release: the React components of the Masilia admin pages in the design of 
 - Helpers: `http`, `i18n`, `notify`, `udw`, `adapters`, `useDebounced`.
 - The bundle that registers the `@masilia-admin-kit` alias in Ibexa's Encore configuration.
 
-[Unreleased]: https://github.com/MasiliaLabs/ibexa-admin-kit/compare/0.1.6...HEAD
+[Unreleased]: https://github.com/MasiliaLabs/ibexa-admin-kit/compare/0.2.0...HEAD
+[0.2.0]: https://github.com/MasiliaLabs/ibexa-admin-kit/compare/0.1.6...0.2.0
 [0.1.6]: https://github.com/MasiliaLabs/ibexa-admin-kit/compare/0.1.5...0.1.6
 [0.1.5]: https://github.com/MasiliaLabs/ibexa-admin-kit/compare/0.1.4...0.1.5
 [0.1.4]: https://github.com/MasiliaLabs/ibexa-admin-kit/compare/0.1.3...0.1.4
