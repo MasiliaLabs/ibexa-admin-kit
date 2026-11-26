@@ -20,13 +20,13 @@ It reuses what Ibexa already has instead of copying it: the global CSS classes o
 
 | Area | Components and helpers |
 | --- | --- |
-| Fields | `TextField` (text, number, password, url), `TextAreaField`, `DropdownField` and `MultiDropdownField` (search included), `Checkbox` and `CheckboxGroup`, `RadioGroupField`, `ToggleField`, `SegmentedField`, `ColorField`, `DateTimeField` (the admin's own date picker), `TaggifyField` (tags), `OrderedChoice` (an ordered list), `UdwPicker` (the content browser) |
+| Fields | `TextField` (text, number, password, url), `TextAreaField`, `DropdownField` and `MultiDropdownField` (search included), `Checkbox` and `CheckboxGroup`, `RadioGroupField`, `ToggleField`, `SegmentedField`, `ColorField`, `DateTimeField` (the admin's own date picker), `TaggifyField` (tags), `OrderedChoice` (an ordered list), `InlineInput` (a small field for the actions of a header or a row), `UdwPicker` (the content browser) |
 | Layout | `Tabs`, `Section` (an accordion section), `TableHeader` (with badges beside the title) and `DataTable` (zebra rows, sticky actions column, empty state, rows that can be chosen, sortable headers), `Pagination`, `FilterCard` with `FilterSelect`, `FilterButton` and `SearchInput` (the adaptive filters bar), `Details`, `AnchorNavigation` and `AnchorSection`, `Inline`, `Muted`, `FormStack`, `Toolbar` |
 | Feedback | `Alert` (the admin's alert), `FormError` (the error row of a form), `Notice` (the informative text of a table header), `InfoTip` (an icon with the admin's own tooltip), `StatusTag`, `StatTile`, `Spinner`, `Autosave`, `notify()` (Ibexa's toast) |
 | Actions | `LinkButton` (a link drawn as a button), `IconButton` (with a busy state), `ExternalLink`, `Dialog` and `ConfirmDialog` (focus trap, Escape, side panel or centred), `Popover` (a window next to what it edits) |
 | The context menu | `ContextSlot` and `ContextButton` (a button drawn in the context menu of the admin, under `.ibexa-content-menu-wrapper`), `SplitButton` ("Save and close" and its chevron), `PopupMenu` and `PopupMenuItem` |
 | Pages | `@ibexadesign/masilia_kit/page.html.twig`: the layout, the breadcrumbs, the title, the root of the React app and its Encore entry, and the items of the context menu (see [Admin pages](#admin-pages)) |
-| Helpers | `http` (JSON calls with the admin's CSRF token, errors as values, problems by field), `i18n` (the Bazinga JS translator with English fallbacks), `AdminProviders` (what the design system's components need around them), `route`, `languageLabel`, `downloadFile`, `udw`, `adapters`, `useDebounced` |
+| Helpers | `http` (JSON calls with the admin's CSRF token, errors as values, problems by field), `i18n` (the Bazinga JS translator with English fallbacks), `AdminProviders` (what the design system's components need around them), `route`, `csrfHeaders` (the token alone, for an upload) and `adminHeaders` (the JSON variant), `languageLabel`, `downloadFile`, `udw`, `adapters`, `useDebounced` |
 
 ## Requirements
 

@@ -12,11 +12,11 @@ All notable changes to `masilia/ibexa-admin-kit` are documented here. The format
 - `TableHeader` takes `tags`: badges beside the title that stay with it when the actions wrap.
 - `TextAreaField`, `SegmentedField` (the design system's alternative radio buttons in the frame of a field) and `ColorField` (the browser's picker, the #RRGGBB written out, colours to start from, warnings given by the page), with `parseHex`.
 - `AdminProviders` (what the design system's components need around them: their texts and the icons of the admin), `languageLabel` (a language named in the language of the admin), `downloadFile`, and `route` (the routes the admin exposes to its scripts).
-- `Icon` and `AltRadiosListField` of the design system, typed.
+- `Icon`, `AltRadiosListField`, `RadioButtonsListField`, `ToggleButtonInput` and `Autosave` of the design system, typed.
 - `Pagination` (the admin's pagination, with the line that says how many items are shown; it reuses the admin's own `computePages`).
 - `DataTable` can choose rows (`selection`: a checkbox per row, a main one with its "some" state, rows that cannot be chosen) and sort (`sort`: sortable headers, `aria-sort`, keyboard), and has icon and centred columns. Without those props it renders exactly what it did.
 - `csrfHeaders`: the token of the page and nothing about the body (for an upload, which sets its own `Content-Type`); `adminHeaders` is the JSON variant of it.
-- `InlineInput`: a small text field with no frame, for the actions of a header or a row ("add a category").
+- `InlineInput`: a small text field (the admin's small input) with no frame, for the actions of a header or a row ("add a category").
 - `TaggifyField` (the admin's tag field, with the rules of its script written for React: tags with a remove button, end keys and separators, a pattern, adding when the field loses the focus) and `DateTimeField` (the admin's own date picker, driven from React: it shows the clock of the admin's time zone and gives the moment back in seconds; the browser's date and time field when the admin's script is not on the page).
 - `RadioGroupField` and `ToggleField` (the design system's radio buttons and toggle in the frame of a field), `Details` (the admin's "details" block, a long value can be expanded), `AnchorNavigation` and `AnchorSection` (a long page cut into sections with the admin's anchor menu, the entry of the section being read is lit), and `Autosave` (the design system's, typed).
 - The context menu of the admin: `ContextSlot` draws a button in an item of `.ibexa-context-menu` (under `.ibexa-content-menu-wrapper`), `ContextButton` is the button with the markup of the admin's own, `SplitButton` is the admin's split button ("Save and close" and its chevron) and `PopupMenu` / `PopupMenuItem` its menu. `useDismissable` closes a floating element on Escape or a press outside.
@@ -27,6 +27,7 @@ All notable changes to `masilia/ibexa-admin-kit` are documented here. The format
 - `TableHeader`: `headline` may be any content, not only a text (the title with its count reads the same).
 - The error row of a field has the icon of an error, as the admin's forms draw it.
 - `IconSvg` accepts every size of the admin's icon (`tiny` to `extra-large`).
+- The actions of a `TableHeader` may wrap onto a second line and lean on the end of the line (`masilia-kit-actions`), for every header, with or without `tags`. It only shows when the actions no longer fit.
 
 ## [0.1.6] - 2026-11-20
 
